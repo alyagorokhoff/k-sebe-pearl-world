@@ -1,0 +1,5 @@
+Original ChatGPT Site: https://k-sebe-pearl-world.alya-gorokhoff.chatgpt.site/?v=20
+Site project id: appgprj_6ad75f8b946c8191a07cc89f8d6793ef
+Saved version: 20
+Source commit: 4d84ce7b0b829f1095ae760c0d0f2126144d65b3
+Export method: original Site source repository checkout at the matching source commit.
