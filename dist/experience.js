@@ -9,6 +9,31 @@
  dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');trigger?.focus({preventScroll:true});});
  dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
  $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const target=document.querySelector(a.getAttribute('href'));if(target){e.preventDefault();if(target.id==='home')window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});else target.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});history.replaceState(null,'',a.getAttribute('href'));}}));
+ const miracleGiftButton=$('#miracle-gift-button');
+ if(miracleGiftButton){
+  const releaseAt=Date.parse('2026-11-01T00:00:00+03:00');
+  const destinations=[
+   'https://pechenka.archangelsguide.ru/',
+   'https://monetka.archangelsguide.ru/',
+   'https://bilet.archangelsguide.ru/',
+   'https://obyatie.archangelsguide.ru/',
+   'https://babochka.archangelsguide.ru/'
+  ];
+  const syncMiracleAvailability=()=>{
+   const locked=Date.now()<releaseAt;
+   miracleGiftButton.disabled=locked;
+   miracleGiftButton.setAttribute('aria-disabled',String(locked));
+  };
+  syncMiracleAvailability();
+  setTimeout(syncMiracleAvailability,Math.max(0,releaseAt-Date.now()));
+  document.addEventListener('visibilitychange',syncMiracleAvailability);
+  addEventListener('focus',syncMiracleAvailability);
+  miracleGiftButton.addEventListener('click',()=>{
+   syncMiracleAvailability();
+   if(miracleGiftButton.disabled)return;
+   location.assign(destinations[Math.floor(Math.random()*destinations.length)]);
+  });
+ }
  // Every page load gets a fresh invitation; a permanent shortcut remains after dismissal.
  const nudge=$('#miracle-nudge'),gift=$('#gift'),launcher=$('#miracle-launcher'),arrival=$('#arrival');let nudgeShown=false,nudgeDismissed=false,nudgeTimer;
  function hideNudge(){clearTimeout(nudgeTimer);nudge.hidden=true;nudgeDismissed=true;document.body.classList.remove('miracle-notice-open');}
