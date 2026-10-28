@@ -188,3 +188,8 @@ footer{background:#f5f0eb;color:#84697c;border-top:1px solid var(--line)}footer 
 .miracle-notice-open .miracle-launcher{visibility:hidden}
 
 .miracle-launcher-label small{font-size:8px;letter-spacing:.09em}
+
+/* The gift entry stays visible but locked until the published opening time. */
+.miracle-gift-button{margin-top:20px}
+.miracle-gift-button:disabled{cursor:not-allowed;opacity:.68}
+.miracle-gift-button:disabled:hover{transform:none;background:var(--plum);box-shadow:none}
