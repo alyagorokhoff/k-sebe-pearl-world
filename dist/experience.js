@@ -12,13 +12,7 @@
  const miracleGiftButton=$('#miracle-gift-button');
  if(miracleGiftButton){
   const releaseAt=Date.parse('2026-11-01T00:00:00+03:00');
-  const destinations=[
-   'https://pechenka.archangelsguide.ru/',
-   'https://monetka.archangelsguide.ru/',
-   'https://bilet.archangelsguide.ru/',
-   'https://obyatie.archangelsguide.ru/',
-   'https://babochka.archangelsguide.ru/'
-  ];
+  const miracleStartUrl='https://pechenka.archangelsguide.ru/_chudo/start';
   const syncMiracleAvailability=()=>{
    const locked=Date.now()<releaseAt;
    miracleGiftButton.disabled=locked;
@@ -31,7 +25,7 @@
   miracleGiftButton.addEventListener('click',()=>{
    syncMiracleAvailability();
    if(miracleGiftButton.disabled)return;
-   location.assign(destinations[Math.floor(Math.random()*destinations.length)]);
+   location.assign(miracleStartUrl);
   });
  }
  // Every page load gets a fresh invitation; a permanent shortcut remains after dismissal.
